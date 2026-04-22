@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #fff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #f1f3f4;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --border-primary: #e8eaed;
+  --border-secondary: #dadce0;
+  --border-light: rgba(0, 0, 0, 0.06);
+  --accent: #1a73e8;
+  --accent-dark: #174ea6;
+  --accent-bg: #e8f0fe;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #202124;
+    --bg-secondary: #292a2d;
+    --bg-tertiary: #35363a;
+    --text-primary: #e8eaed;
+    --text-secondary: #9aa0a6;
+    --border-primary: #3c4043;
+    --border-secondary: #5f6368;
+    --border-light: rgba(255, 255, 255, 0.08);
+    --accent: #8ab4f8;
+    --accent-dark: #aecbfa;
+    --accent-bg: #1a3a52;
+    --shadow: rgba(0, 0, 0, 0.3);
+  }
+}
+
+body.dark-mode {
+  --bg-primary: #202124;
+  --bg-secondary: #292a2d;
+  --bg-tertiary: #35363a;
+  --text-primary: #e8eaed;
+  --text-secondary: #9aa0a6;
+  --border-primary: #3c4043;
+  --border-secondary: #5f6368;
+  --border-light: rgba(255, 255, 255, 0.08);
+  --accent: #8ab4f8;
+  --accent-dark: #aecbfa;
+  --accent-bg: #1a3a52;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+body.light-mode {
+  --bg-primary: #fff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #f1f3f4;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --border-primary: #e8eaed;
+  --border-secondary: #dadce0;
+  --border-light: rgba(0, 0, 0, 0.06);
+  --accent: #1a73e8;
+  --accent-dark: #174ea6;
+  --accent-bg: #e8f0fe;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  @apply text-[13px] text-text-primary bg-bg-tertiary overflow-hidden m-0 p-0 font-sans;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Chrome-like Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-secondary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Slider Styling */
+input[type=range] {
+  @apply w-full h-1 rounded-sm bg-border-primary outline-none cursor-pointer my-1 appearance-none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  @apply appearance-none w-3.5 h-3.5 rounded-full bg-accent cursor-pointer transition-transform shadow-sm;
+  margin-top: -5px; /* Alignment fix */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  @apply h-1 bg-border-primary rounded-sm;
+}
+
+input[type=range]:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+input[type=range]:active::-webkit-slider-thumb {
+  transform: scale(1.25);
+}
+
+/* Vertical Slider specifically for EQ */
+input[type=range].vertical {
+  -webkit-appearance: slider-vertical;
+  writing-mode: bt-lr;
+  width: 2px;
+  height: 60px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+
+input[type=range].vertical::-webkit-slider-thumb {
+  width: 10px;
+  height: 10px;
+  margin-top: 0;
+}
+
+input[type=range].vertical::-webkit-slider-runnable-track {
+  width: 2px;
+}
+
+/* Hard constraint for logo to prevent "huge" rendering */
+.logo-fixed {
+  height: 24px !important;
+  width: auto !important;
+  max-width: 200px !important;
+  object-fit: contain;
+}
