@@ -11,8 +11,10 @@ interface SliderProps {
   disabled?: boolean;
 }
 
+const TRACK_HEIGHT = 60;
+
 const Slider: React.FC<SliderProps> = ({ id, min, max, step, value, onChange, orientation = 'horizontal', disabled }) => {
-  return (
+  const inputEl = (
     <input
       type="range"
       id={id}
@@ -21,10 +23,22 @@ const Slider: React.FC<SliderProps> = ({ id, min, max, step, value, onChange, or
       step={step}
       value={value}
       onChange={(e) => onChange(parseFloat(e.target.value))}
-      className={`slider ${orientation === 'vertical' ? 'vertical' : ''} ${disabled ? 'opacity-50 pointer-events-none' : ''}`}
-      {...({ orient: orientation } as any)}
+      className={`slider ${disabled ? 'opacity-50 pointer-events-none' : ''}`}
+      style={orientation === 'vertical' ? { width: TRACK_HEIGHT, flexShrink: 0, transform: 'rotate(-90deg)' } : undefined}
     />
   );
+
+  if (orientation === 'vertical') {
+    return (
+      <div
+        style={{ width: 20, height: TRACK_HEIGHT, flexShrink: 0, overflow: 'visible', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        {inputEl}
+      </div>
+    );
+  }
+
+  return inputEl;
 };
 
 export default Slider;
